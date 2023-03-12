@@ -1,0 +1,11 @@
+{
+  "apps": {
+    "xcaphq": {
+      "name": "xcaphq",
+      "app_id": "A04TF5F6NER",
+      "team_id": "T01JPJKARHN",
+      "IsDev": false
+    }
+  },
+  "default": "xcaphq"
+}
