@@ -1,6 +1,6 @@
 import { DefineFunction, Schema, SlackFunction } from "deno-slack-sdk/mod.ts";
 
-export const ChatGPTFunction = DefineFunction({
+export const ChatGPTFunctionDefinition = DefineFunction({
   callback_id: "chatgpt_function",
   title: "Ask ChatGPT",
   description: "Ask questions to ChatGPT",
@@ -30,7 +30,7 @@ export const ChatGPTFunction = DefineFunction({
 });
 
 export default SlackFunction(
-  ChatGPTFunction,
+  ChatGPTFunctionDefinition,
   async ({ inputs, env }) => {
     // omit user id expressions
     const content = inputs.question.replaceAll(/\<\@.+?\>/g, " ");

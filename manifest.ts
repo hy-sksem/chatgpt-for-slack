@@ -10,6 +10,7 @@ export default Manifest({
   name: "ChaTARO(ChatGPT) v0.1",
   description: "chat bot answers any questions with official ChatGPT API",
   icon: "assets/icon.png",
+  functions: [chatgpt_function],
   workflows: [GreetingWorkflow],
   outgoingDomains: [
     "api.openai.com",
