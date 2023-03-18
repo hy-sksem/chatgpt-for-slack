@@ -14,7 +14,6 @@ const appmentionTrigger: Trigger<typeof ChatGPTWorkflow.definition> = {
       "C04TD92V9GA",
     ],
   },
-
   inputs: {
     channel_id: { value: "{{data.channel_id}}" },
     user_id: { value: "{{data.user_id}}" },

@@ -14,6 +14,6 @@ export default SlackFunction(
         error: `エラーなのだ. ${response.error}}`,
       };
     }
-    return { outputs: {} };
+    return { outputs: { ts: response.ts } };
   },
 );

@@ -19,8 +19,13 @@ export const InitialResponseDefinition = DefineFunction({
     required: ["channel_id", "content"],
   },
   output_parameters: {
-    properties: {},
-    required: [],
+    properties: {
+      ts: {
+        type: Schema.types.string,
+        description: "timestamp ID",
+      },
+    },
+    required: ["ts"],
   },
 });
 

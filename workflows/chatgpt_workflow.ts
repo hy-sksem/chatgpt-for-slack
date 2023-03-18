@@ -1,11 +1,11 @@
 import { DefineWorkflow, Schema } from "deno-slack-sdk/mod.ts";
 import { InitialResponseDefinition } from "../functions/initial_response/definition.ts";
-import { ChatGPTFunctionDefinition } from "../functions/chatgpt_function.ts";
+import { MainResponseDefinition } from "../functions/main_response/definition.ts";
 
 const ChatGPTWorkflow = DefineWorkflow({
   callback_id: "chatgpt_workflow",
-  title: "Ask AI",
-  description: "Respond question to users",
+  title: "chat ChatGPT",
+  description: "Chat with ChatGPT",
   input_parameters: {
     properties: {
       channel_id: {
@@ -22,7 +22,8 @@ const ChatGPTWorkflow = DefineWorkflow({
   },
 });
 
-ChatGPTWorkflow.addStep(
+// 初期メッセージを送信する Step
+const initResponse = ChatGPTWorkflow.addStep(
   InitialResponseDefinition,
   {
     channel_id: ChatGPTWorkflow.inputs.channel_id,
@@ -30,18 +31,14 @@ ChatGPTWorkflow.addStep(
   },
 );
 
-const chatGPTFunctionStep = ChatGPTWorkflow.addStep(
-  ChatGPTFunctionDefinition,
+// ChatGPTのAPIの結果を送信する Step
+ChatGPTWorkflow.addStep(
+  MainResponseDefinition,
   {
+    channel_id: ChatGPTWorkflow.inputs.channel_id,
     user_id: ChatGPTWorkflow.inputs.user_id,
-    question: ChatGPTWorkflow.inputs.question,
+    content: ChatGPTWorkflow.inputs.question,
+    init_ts: initResponse.outputs.ts,
   },
 );
-
-// メッセージをチャネルに送信する Step
-ChatGPTWorkflow.addStep(Schema.slack.functions.SendMessage, {
-  channel_id: ChatGPTWorkflow.inputs.channel_id,
-  message: chatGPTFunctionStep.outputs.answer,
-});
-
 export default ChatGPTWorkflow;
