@@ -1,5 +1,6 @@
 import { Manifest } from "deno-slack-sdk/mod.ts";
 import ChatGPTWorkflow from "./workflows/chatgpt_workflow.ts";
+import InitialResponseDefinition from "./functions/initial_response/definition.ts";
 
 /**
  * The app manifest contains the app's configuration. This
@@ -7,9 +8,10 @@ import ChatGPTWorkflow from "./workflows/chatgpt_workflow.ts";
  * https://api.slack.com/future/manifest
  */
 export default Manifest({
-  name: "ChaTARO(ChatGPT) v0.1",
+  name: "ChaTARO(ChatGPT) v0.2",
   description: "chat bot answers any questions with official ChatGPT API",
   icon: "assets/icon.png",
+  functions: [InitialResponseDefinition],
   workflows: [ChatGPTWorkflow],
   outgoingDomains: [
     "api.openai.com",

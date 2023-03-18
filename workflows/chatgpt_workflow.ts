@@ -1,4 +1,5 @@
 import { DefineWorkflow, Schema } from "deno-slack-sdk/mod.ts";
+import { InitialResponseDefinition } from "../functions/initial_response/definition.ts";
 import { ChatGPTFunctionDefinition } from "../functions/chatgpt_function.ts";
 
 const ChatGPTWorkflow = DefineWorkflow({
@@ -21,7 +22,14 @@ const ChatGPTWorkflow = DefineWorkflow({
   },
 });
 
-// OpenAI をコールする Step
+ChatGPTWorkflow.addStep(
+  InitialResponseDefinition,
+  {
+    channel_id: ChatGPTWorkflow.inputs.channel_id,
+    content: ChatGPTWorkflow.inputs.question,
+  },
+);
+
 const chatGPTFunctionStep = ChatGPTWorkflow.addStep(
   ChatGPTFunctionDefinition,
   {
