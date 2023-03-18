@@ -8,7 +8,6 @@ export default SlackFunction(
       channel: inputs.channel_id,
       text: "(考え中なのだ...)",
     });
-    console.log(inputs.content);
     console.log(response);
     if (!response.ok) {
       return {
