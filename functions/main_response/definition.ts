@@ -23,17 +23,34 @@ export const MainResponseDefinition = DefineFunction({
         type: Schema.types.string,
         description: "timestamp ID",
       },
+      history: {
+        type: Schema.types.array,
+        items: { "type": Schema.types.string },
+        description: "history",
+      },
     },
-    required: ["channel_id", "user_id", "content", "init_ts"],
+    required: ["channel_id", "user_id", "content", "init_ts", "history"],
   },
   output_parameters: {
     properties: {
+      ai_id: {
+        type: Schema.types.string,
+        description: "ai ID",
+      },
       ts: {
         type: Schema.types.string,
         description: "timestamp ID",
       },
+      user_id: {
+        type: Schema.slack.types.user_id,
+        description: "user ID",
+      },
+      ans: {
+        type: Schema.types.string,
+        description: "answer",
+      },
     },
-    required: ["ts"],
+    required: ["ai_id", "ts", "user_id", "ans"],
   },
 });
 

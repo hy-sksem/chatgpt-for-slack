@@ -12,12 +12,14 @@ const appmentionTrigger: Trigger<typeof ChatGPTWorkflow.definition> = {
       "D04TRRADX41",
       "C02CUNDU72S",
       "C04TD92V9GA",
+      "C04UMUXBCEN",
     ],
   },
   inputs: {
     channel_id: { value: "{{data.channel_id}}" },
     user_id: { value: "{{data.user_id}}" },
-    question: { value: "{{data.text}}" },
+    content: { value: "{{data.text}}" },
+    ts: { value: "{{event_timestamp}}" },
   },
 };
 console.log("mention");
