@@ -1,7 +1,6 @@
-# Deno Hello World Slack App
+# chatGPT fot slack-app
 
-This sample app demonstrates how to use a function, workflow, and trigger to
-send a greeting to channel.
+This app is a slack app that uses the [chatGPT](https://openai.com/blog/chatgpt)
 
 **Guide Outline**:
 
